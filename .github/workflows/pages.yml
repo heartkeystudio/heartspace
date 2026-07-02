@@ -1,0 +1,31 @@
+name: Pages Build and Deployment
+
+on:
+  push:
+    branches: ["master"] # Ou "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      # Adicione aqui os passos para compilar o seu projeto Godot, se necessário
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './' # Ajuste para a pasta onde ficam seus arquivos .html, .wasm, etc.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
