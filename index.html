@@ -4,69 +4,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeartSpace</title>
+    
+    <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
+<link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
+<link rel="manifest" href="index.manifest.json">
+<script src="coi-serviceworker.js"></script>
+    
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #0b0b0c;
-            font-family: 'Inter', -apple-system, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #ffffff;
-            overflow: hidden;
-        }
-        .loader-container {
-            text-align: center;
-            transition: opacity 0.5s ease-out;
-        }
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.05);
-            border-top: 3px solid #e63743; /* Cor vermelha identitária do app */
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 24px auto;
-        }
-        .status-text {
-            font-size: 16px;
-            font-weight: 400;
-            color: #a0a0a5;
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
-        }
-        .progress-box {
-            width: 240px;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #e63743, #b31e28);
-            border-radius: 10px;
-            transition: width 0.1s ease-out;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        #canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
-            background-color: #0b0b0c;
-        }
+        body { margin: 0; padding: 0; background-color: #0b0b0c; font-family: 'Inter', -apple-system, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; color: #ffffff; overflow: hidden; }
+        .loader-container { text-align: center; transition: opacity 0.5s ease-out; }
+        .spinner { width: 50px; height: 50px; border: 3px solid rgba(255, 255, 255, 0.05); border-top: 3px solid #e63743; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 24px auto; }
+        .status-text { font-size: 16px; font-weight: 400; color: #a0a0a5; margin-bottom: 8px; letter-spacing: 0.5px; }
+        .progress-box { width: 240px; height: 4px; background-color: rgba(255, 255, 255, 0.05); border-radius: 10px; margin: 0 auto; overflow: hidden; }
+        .progress-bar { width: 0%; height: 100%; background: linear-gradient(90deg, #e63743, #b31e28); border-radius: 10px; transition: width 0.1s ease-out; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        #canvas { display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 1; background-color: #0b0b0c; }
         #canvas:focus { outline: none; }
     </style>
 </head>
@@ -82,13 +34,9 @@
     </div>
 
     <script src="index.js"></script>
-    <script src="index.js"></script>
-    
     <script>
-        // A Godot injeta o JSON com o nome do executável e regras automaticamente aqui:
         const godotConfig = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":31546304,"index.wasm":1601069},"focusCanvas":true,"gdextensionLibs":["liblexicon.web.template_release.wasm32.wasm"],"godotPoolSize":4,"serviceWorker":"index.service.worker.js"};
         
-        // Nós apenas acoplamos a nossa barra de progresso visual às configurações nativas
         godotConfig.onProgress = function (current, total) {
             if (total > 0) {
                 const percentage = (current / total) * 100;
@@ -99,14 +47,11 @@
         
         const engine = new Engine(godotConfig);
         engine.startGame().then(() => {
-            // Remove a cortina de carregamento com fade suave assim que o C++ assumir a tela
             const loader = document.getElementById("loader");
             loader.style.opacity = "0";
             setTimeout(() => loader.remove(), 500);
         });
     </script>
-</body>
-</html>
 </body>
 </html>
 
