@@ -5,9 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeartSpace</title>
     
+    <script src="coi-serviceworker.js"></script>
+    
     <link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
-<link rel="manifest" href="index.manifest.json">
 <script src="coi-serviceworker.js"></script>
     
     <style>
@@ -35,7 +36,7 @@
 
     <script src="index.js"></script>
     <script>
-        const godotConfig = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":31546304,"index.wasm":1601069},"focusCanvas":true,"gdextensionLibs":["liblexicon.web.template_release.wasm32.wasm"],"godotPoolSize":4,"serviceWorker":"index.service.worker.js"};
+        const godotConfig = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":31546304,"index.wasm":1601069},"focusCanvas":true,"gdextensionLibs":["liblexicon.web.template_release.wasm32.wasm"],"godotPoolSize":4};
         
         godotConfig.onProgress = function (current, total) {
             if (total > 0) {
