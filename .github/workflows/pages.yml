@@ -31,4 +31,4 @@ jobs:
 
       - name: "🚀 Publicando na URL Oficial"
         id: deployment
-        uses: actions/deploy-pages@v4s
+        uses: actions/deploy-pages@v4
