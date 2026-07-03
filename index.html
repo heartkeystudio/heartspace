@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script src="coi-serviceworker.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HeartSpace</title>
@@ -83,18 +82,18 @@
     </div>
 
     <script src="index.js"></script>
+    <script src="index.js"></script>
+    
     <script>
-        const godotConfig = {
-            "canvasResizePolicy": 2,
-            "executable": "index",
-            "fscK": true,
-            "args": [],
-            "onProgress": function (current, total) {
-                if (total > 0) {
-                    const percentage = (current / total) * 100;
-                    document.getElementById("progress").style.width = percentage + "%";
-                    document.getElementById("status").innerText = `Carregando Módulos: ${Math.round(percentage)}%`;
-                }
+        // A Godot injeta o JSON com o nome do executável e regras automaticamente aqui:
+        const godotConfig = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":31546304,"index.wasm":1601069},"focusCanvas":true,"gdextensionLibs":["liblexicon.web.template_release.wasm32.wasm"],"godotPoolSize":4,"serviceWorker":"index.service.worker.js"};
+        
+        // Nós apenas acoplamos a nossa barra de progresso visual às configurações nativas
+        godotConfig.onProgress = function (current, total) {
+            if (total > 0) {
+                const percentage = (current / total) * 100;
+                document.getElementById("progress").style.width = percentage + "%";
+                document.getElementById("status").innerText = `Carregando Módulos: ${Math.round(percentage)}%`;
             }
         };
         
@@ -106,6 +105,8 @@
             setTimeout(() => loader.remove(), 500);
         });
     </script>
+</body>
+</html>
 </body>
 </html>
 
